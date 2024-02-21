@@ -1,0 +1,9 @@
+{
+    "manifest_version": 3,
+    "name": "Assignment Reminder",
+    "description": "Extension to Remind People about upcoming Assignments",
+    "version": "1.0",
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
