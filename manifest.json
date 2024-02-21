@@ -3,11 +3,22 @@
     "name": "Assignment Reminder",
     "description": "Extension to Remind People about upcoming Assignments",
     "version": "1.0",
+    "icons": {
+      "16":"icon.png"
+    },
 
     "permissions": [
-      "notifications"
+      "notifications",
+      "scripting"
     ],
-    
+    "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "background": {
+      "service_worker": "service-worker.js",
+      "type": "module"
+    },
     "action": {
       "default_popup": "popup.html"
     }
