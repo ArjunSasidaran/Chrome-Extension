@@ -3,6 +3,11 @@
     "name": "Assignment Reminder",
     "description": "Extension to Remind People about upcoming Assignments",
     "version": "1.0",
+
+    "permissions": [
+      "notifications"
+    ],
+    
     "action": {
       "default_popup": "popup.html"
     }
