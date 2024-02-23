@@ -9,7 +9,8 @@
 
     "permissions": [
       "notifications",
-      "scripting"
+      "scripting",
+      "storage"
     ],
     "host_permissions": [
       "http://*/*",
@@ -21,5 +22,6 @@
     },
     "action": {
       "default_popup": "popup.html"
+      
     }
   }
