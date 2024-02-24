@@ -9,7 +9,8 @@
 
     "permissions": [
       "notifications",
-      "scripting"
+      "alarms",
+      "storage"
     ],
     "host_permissions": [
       "http://*/*",
