@@ -7,39 +7,41 @@ chrome.runtime.onMessage.addListener((request) => {
 
 // Create notification for alarms
 chrome.alarms.onAlarm.addListener(function(alarm) {
-    createNotification();
+    createNotification(alarm.Assignmentname);
   });
 
 
-function createNotification() {
+function createNotification(Assignmentname) {
     console.log('Notification');
-    chrome.notifications.create('Assignment Due', {
-        type: 'basic',
-        iconUrl: 'icon.png',
+    chrome.notifications.create(Assignmentname, {
         title: 'Assignment due',
-        message: 'Your assignment is due soon'
-      }, function(notificationId) {});
+        message: 'Your assignment is due soon',
+        iconUrl: 'icon.png',
+        type: 'basic'
+      });
+
 }
 
 function createAlarm(){
     chrome.storage.local.get(['assignments'], function(result) {
 
         // Assignment exists
-        if (result.length != 0) {
+        if (result.assignments && result.assignments.length > 0) {
 
             // Get newest Assignment
             var assignment = result.assignments[result.assignments.length - 1];
             console.log(assignment.Deadline);
 
 
-            let timeLeft = new Date(assignment.Deadline) - new Date();
-            var daysLeft = timeLeft / (1000 * 60 * 60 * 24);
+            var minutesLeft = (new Date(assignment.Deadline) - Date.now()) / 60000;
         }
     
         // Create an alarm everyday
-        for (let i = 0; i < daysLeft; i++) {
-            chrome.alarms.create(`${assignment.Assignment} due in ${i} days`, {delayInMinutes: i * 1440});
-            console.log(i * 1440);
+        for (let i = minutesLeft; i >= 0; i -= 1440 ) {
+            console.log(i);
+            let days = i / 1440;
+            let name = assignment.Assignment + days;
+            chrome.alarms.create(`${name} due in ${days} days`, {delayInMinutes: i});
         }
     })
 }
