@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             chrome.storage.local.set({'assignments':assignments}, function(){
                 console.log('StoredData: ', assignments)
-
+                chrome.runtime.sendMessage("scheduleAssignment");
             });
     
      });
