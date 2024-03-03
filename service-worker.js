@@ -8,6 +8,7 @@ chrome.runtime.onMessage.addListener((request) => {
 // Create notification for alarms
 chrome.alarms.onAlarm.addListener(function(alarm) {
     createNotification(alarm.Assignmentname);
+    deleteAssignment();
   });
 
 
@@ -44,4 +45,33 @@ function createAlarm(){
             chrome.alarms.create(`${name} due in ${days} days`, {delayInMinutes: i});
         }
     })
+}
+
+function deleteAssignment(){
+    chrome.storage.local.get(['assignments'], function(result){
+
+        console.log(result);
+
+        if (result.assignments && result.assignments.length > 0) {
+        
+            let updatedAssignments = result.assignments.filter(function(currAssignment){
+                // remove the assignment
+                if(Date.now() > new Date(currAssignment.Deadline))
+                    return false; // false means remove
+                else
+                    return true; // true means keep
+
+            });
+
+            console.log(updatedAssignments);
+
+            chrome.storage.local.set({ 'assignments': updatedAssignments }, function() {
+                console.log('Expired assignments removed');
+            });
+
+        }
+
+        
+    });
+
 }
