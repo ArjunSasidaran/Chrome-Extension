@@ -29,5 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
      });
     
     });
+    // Add button event listener
+    document.getElementById('backButton').addEventListener('click', function() {
+        window.location.href = 'assignments.html'; // Navigate to popup.html
+        });
 
 });

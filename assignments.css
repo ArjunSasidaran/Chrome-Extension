@@ -1,0 +1,42 @@
+.assignment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* This will make the delete icon take up space even when it's not visible */
+.delete-icon {
+  width: 20px; /* Example size, adjust as necessary */
+  height: 20px; /* Example size, adjust as necessary */
+  cursor: pointer;
+  opacity: 0; /* Make the icon invisible instead of display: none */
+}
+
+button {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Change the opacity to 1 when the assignment is hovered to make the icon visible */
+.assignment:hover .delete-icon {
+  opacity: 1;
+}
